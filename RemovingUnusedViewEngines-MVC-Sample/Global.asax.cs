@@ -12,10 +12,17 @@ namespace RemovingUnusedViewEngines_MVC_Sample
     {
         protected void Application_Start()
         {
+            RemoveUnusedViewEngines();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        private void RemoveUnusedViewEngines()
+        {
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
         }
     }
 }
